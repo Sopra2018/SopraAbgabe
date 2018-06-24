@@ -1,11 +1,20 @@
-<!DOCTYPE html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+    <th:block th:include="fragments/htmlHead :: htmlHead"></th:block>
 </head>
 <body>
-<p>Willkommen auf home ! Du bist jetzt eingeloggt</p>
-<a th:href="@{/logout}">Logout</a>
+<div class="container">
+    <p class="marginTop20" th:text="'Hello World!'"></p>
+    <div class="alert alert-success" role="alert">
+        Wenn dieser Text in einem grünen Alert erscheint haben Sie Bootstrap erfolgreich eingebunden.
+    </div>
+    <p th:text="'Registriert sind folgende User:'"></p>
+    <ul>
+        <li th:each="user : ${allUsers}">
+            <span th:text="${user.username}"></span>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

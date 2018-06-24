@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.2.RELEASE'
+        springBootVersion = '2.0.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -11,11 +11,11 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'de.studycard'
+group = 'de.hohenheim'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -23,15 +23,18 @@ repositories {
     mavenCentral()
 }
 
+bootRun {
+    sourceResources(sourceSets.main)
+}
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
-
-    // added this line to add the Security Bib from Spring to the project
     compile('org.springframework.boot:spring-boot-starter-security')
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    // benötigt für ILIAS SOAP-Requests
+    compile files('javax.microedition.jar', 'com.sun.midp.jar', 'ksoap2-android-assembly-2.5.4-jar-with-dependencies.jar')
 }
